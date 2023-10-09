@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import {  prescriberData } from './prescriber';
+import { of, tap } from 'rxjs';
+import { prescriberData } from './prescriber';
 import { PrescriberService } from './prescribers.service';
 describe('PrescriberService', () => {
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
@@ -11,7 +11,7 @@ describe('PrescriberService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, PrescriberService],
     });
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get','put']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'put']);
     service = new PrescriberService(httpClientSpy);
   });
 
@@ -34,5 +34,12 @@ describe('PrescriberService', () => {
     service.updateData(mockData[1]).subscribe();
     expect(httpClientSpy.put).toHaveBeenCalledTimes(1);
   });
-
+  it('should render correct data when search', () => {
+    httpClientSpy.get.and.returnValue(of(mockData[0]));
+    service
+      .searchData(mockData[0].firstName)
+      .pipe(tap((value) => expect(value).toBe(mockData[0])))
+      .subscribe();
+    expect(httpClientSpy.get).toHaveBeenCalledTimes(1);
+  });
 });

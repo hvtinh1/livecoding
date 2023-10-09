@@ -1,11 +1,12 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../material.module';
 import { prescriberData } from '../prescriber';
-
+import { of } from 'rxjs';
 import { DetailComponent } from './detail.component';
+import { PrescriberService } from '../prescribers.service';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
@@ -16,9 +17,9 @@ describe('DetailComponent', () => {
       declarations: [DetailComponent],
       imports: [
         RouterTestingModule,
-        HttpClientModule,
         MaterialModule,
         FormsModule,
+        HttpClientModule
       ],
     });
     fixture = TestBed.createComponent(DetailComponent);
@@ -67,4 +68,5 @@ describe('DetailComponent', () => {
       }
     }
   });
+
 });
