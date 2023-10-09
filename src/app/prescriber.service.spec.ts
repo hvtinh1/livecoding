@@ -11,7 +11,7 @@ describe('PrescriberService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, PrescriberService],
     });
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get','post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get','put']);
     service = new PrescriberService(httpClientSpy);
   });
 
@@ -30,9 +30,9 @@ describe('PrescriberService', () => {
   });
 
   it('should call post method one time', () => {
-    httpClientSpy.post.and.returnValue(of(mockData[1]));
+    httpClientSpy.put.and.returnValue(of(mockData[1]));
     service.updateData(mockData[1]).subscribe();
-    expect(httpClientSpy.post).toHaveBeenCalledTimes(1);
+    expect(httpClientSpy.put).toHaveBeenCalledTimes(1);
   });
 
 });

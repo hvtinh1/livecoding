@@ -10,7 +10,8 @@ import { PrescriberService } from '../prescribers.service';
   styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
-  public detail: IPrescriber | undefined;
+  public detail!: IPrescriber;
+  public inputData: string = '';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,7 +24,7 @@ export class DetailComponent implements OnInit {
       .pipe(
         map((value) => {
           return (this.detail = value.filter((pres) => {
-            return pres.doctorId.toString() === id;
+            return pres.id.toString() === id;
           })[0]);
         })
       )
@@ -31,5 +32,15 @@ export class DetailComponent implements OnInit {
   }
   backToHome() {
     this.router.navigate(['']);
+  }
+  updateData() {
+    const newPres = {
+      ...this.detail,
+      firstName: this.inputData,
+    };
+    console.log(this.detail,newPres)
+    this.prescriberService
+      .updateData(newPres)
+      .subscribe((data) => console.log('data in after update'));
   }
 }

@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   ) {}
   public prescriber: IPrescriber[] | undefined;
   public displayedColumns: string[] = [
-    'doctorId',
+    'id',
     'firstName',
     'lastName',
     'ahpraNumber',

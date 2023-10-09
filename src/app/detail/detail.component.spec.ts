@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from '../material.module';
 import { prescriberData } from '../prescriber';
@@ -14,7 +14,7 @@ describe('DetailComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [DetailComponent],
-      imports: [RouterTestingModule, HttpClientModule, MaterialModule],
+      imports: [RouterTestingModule, HttpClientModule, MaterialModule,FormsModule],
     });
     fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;

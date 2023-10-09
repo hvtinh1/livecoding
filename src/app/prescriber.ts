@@ -4,7 +4,7 @@ export interface IPrescriber {
   ahpraNumber: string | null;
   practitionerId: string | null;
   pharmacySystemId: number;
-  doctorId: number;
+  id: number;
 }
 export const prescriberData = [
     {
@@ -13,7 +13,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 6,
+      id: 6,
     },
     {
       firstName: 'Paul',
@@ -21,7 +21,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 24,
+      id: 24,
     },
     {
       firstName: 'BEST',
@@ -29,7 +29,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 11,
+      id: 11,
     },
     {
       firstName: 'Paul',
@@ -37,7 +37,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 26,
+      id: 26,
     },
     {
       firstName: 'Kip',
@@ -45,7 +45,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 15,
+      id: 15,
     },
     {
       firstName: 'LOWE',
@@ -53,7 +53,7 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 1,
+      id: 1,
     },
     {
       firstName: 'MCADAMS',
@@ -61,6 +61,6 @@ export const prescriberData = [
       ahpraNumber: null,
       practitionerId: null,
       pharmacySystemId: 7777,
-      doctorId: 3,
+      id: 3,
     },
   ];

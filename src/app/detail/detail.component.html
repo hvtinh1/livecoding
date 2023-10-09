@@ -6,6 +6,8 @@
   <mat-card-content>
     <ng-container *ngIf="detail; else noData">
       <h3>{{ detail.firstName }} {{ detail.lastName }}</h3>
+      <input [(ngModel)]="inputData" />
+      <button (click)="updateData()">Update Doctor First Name</button>
     </ng-container>
     <ng-template #noData>There is no doctor with this information</ng-template>
   </mat-card-content>

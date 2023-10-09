@@ -12,6 +12,7 @@ import { DetailComponent } from './detail/detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { CommonInterceptorInterceptor } from './common-interceptor.interceptor';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent, DashboardComponent, DetailComponent],
   imports: [
@@ -22,6 +23,7 @@ import { CommonInterceptorInterceptor } from './common-interceptor.interceptor';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {}),
     BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [
     {

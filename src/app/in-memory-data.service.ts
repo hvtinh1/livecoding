@@ -13,7 +13,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 6,
+        id: 6,
       },
       {
         firstName: 'Paul',
@@ -21,7 +21,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 24,
+        id: 24,
       },
       {
         firstName: 'BEST',
@@ -29,7 +29,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 11,
+        id: 11,
       },
       {
         firstName: 'Paul',
@@ -37,7 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 26,
+        id: 26,
       },
       {
         firstName: 'Kip',
@@ -45,7 +45,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 15,
+        id: 15,
       },
       {
         firstName: 'LOWE',
@@ -53,7 +53,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 1,
+        id: 1,
       },
       {
         firstName: 'MCADAMS',
@@ -61,7 +61,7 @@ export class InMemoryDataService implements InMemoryDbService {
         ahpraNumber: null,
         practitionerId: null,
         pharmacySystemId: 7777,
-        doctorId: 3,
+        id: 3,
       },
     ];
     return {  prescriber };
@@ -72,9 +72,9 @@ export class InMemoryDataService implements InMemoryDbService {
   // the method below returns the initial number (11).
   // if the heroes array is not empty, the method below returns the highest
   // hero id + 1.
-  genId(heroes: IPrescriber[]): number {
-    return heroes.length > 0
-      ? Math.max(...heroes.map((hero) => hero.doctorId)) + 1
+  genId(prescriber: IPrescriber[]): number {
+    return prescriber.length > 0
+      ? Math.max(...prescriber.map((pres) => pres.id)) + 1
       : 11;
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IPrescriber } from './prescriber';
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,12 @@ export class PrescriberService {
     return this.httpClient.get<IPrescriber[]>('api/prescriber');
   }
 
-  updateData(prescriber: IPrescriber) {
-    return this.httpClient.post<IPrescriber>('api/prescriber', prescriber);
+  updateData(prescriber: IPrescriber): Observable<any> {
+    console.log('in update');
+    return this.httpClient
+      .put('api/prescriber', {
+        ...prescriber,
+      })
+      .pipe(tap((value) => console.log(value, '213213')));
   }
 }
