@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     'ahpraNumber',
     'practitionerId',
     'pharmacySystemId',
+    'actions',
   ];
   ngOnInit() {
     this.prescriberService
@@ -30,5 +31,11 @@ export class DashboardComponent implements OnInit {
   }
   toDetailPage(id: string) {
     this.router.navigate(['detail', id]);
+  }
+  removeData(id: string) {
+    this.prescriberService.removeData(id).subscribe();
+    this.prescriber = this.prescriber?.filter((pres) => {
+      return pres.id.toString() !== id.toString();
+    });
   }
 }

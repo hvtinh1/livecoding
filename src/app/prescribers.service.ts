@@ -20,4 +20,10 @@ export class PrescriberService {
       })
       .pipe(tap((value) => console.log(value, '213213')));
   }
+
+  removeData(prescriber: string): Observable<any> {
+    return this.httpClient
+      .delete<IPrescriber>(`api/prescriber/${prescriber}`)
+      .pipe(tap((error) => console.log(error)));
+  }
 }
