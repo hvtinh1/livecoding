@@ -5,10 +5,54 @@
   <mat-card-content>
     <ng-container *ngIf="detail; else noData">
       <h3>{{ detail.firstName }} {{ detail.lastName }}</h3>
-      <input [(ngModel)]="inputData" />
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
       <button (click)="updateData()">Update Doctor First Name</button>
     </ng-container>
     <ng-template #noData>There is no doctor with this information</ng-template>
+  </mat-card-content>
+  <mat-card-content>
+    <ng-container>
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+      <label>Search for information</label>
+      <table>
+        <tr>
+          <th>firstName</th>
+          <th>lastName</th>
+
+          <th>ahpraNumber</th>
+          <th>practitionerId</th>
+          <th>pharmacySystemId</th>
+          <th>id</th>
+        </tr>
+        <ng-container *ngIf="prescriberData; else noData1">
+          <ng-container *ngFor="let pres of prescriberData">
+            <tr>
+              <td>
+                {{ pres.firstName }}
+              </td>
+              <td>
+                {{ pres.lastName }}
+              </td>
+              <td>
+                {{ pres.ahpraNumber }}
+              </td>
+              <td>
+                {{ pres.practitionerId }}
+              </td>
+              <td>
+                {{ pres.pharmacySystemId }}
+              </td>
+              <td>
+                {{ pres.id }}
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-template #noData1
+          >There is no doctor with this information</ng-template
+        >
+      </table>
+    </ng-container>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="backToHome()">Back to home page</button>

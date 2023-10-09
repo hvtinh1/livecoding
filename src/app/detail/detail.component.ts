@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  mergeAll,
+  mergeMap,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { IPrescriber } from '../prescriber';
 import { PrescriberService } from '../prescribers.service';
 
@@ -12,6 +20,8 @@ import { PrescriberService } from '../prescribers.service';
 export class DetailComponent implements OnInit {
   public detail!: IPrescriber;
   public inputData: string = '';
+  public prescriberData: IPrescriber[] | undefined;
+  public searchData: Subject<string> = new Subject();
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -29,6 +39,22 @@ export class DetailComponent implements OnInit {
         })
       )
       .subscribe();
+    this.prescriberService
+      .getData()
+      .pipe(
+        tap((value) => {
+          this.prescriberData = value;
+        })
+      )
+      .subscribe();
+
+    this.searchData
+      .pipe(
+        debounceTime(300),
+        switchMap((value) => this.prescriberService.searchData(value)),
+        tap((value) => (this.prescriberData = value))
+      )
+      .subscribe();
   }
   backToHome() {
     this.router.navigate(['']);
@@ -38,9 +64,12 @@ export class DetailComponent implements OnInit {
       ...this.detail,
       firstName: this.inputData,
     };
-    console.log(this.detail,newPres)
+    console.log(this.detail, newPres);
     this.prescriberService
       .updateData(newPres)
       .subscribe((data) => console.log('data in after update'));
+  }
+  search(data: string) {
+    this.searchData.next(data);
   }
 }

@@ -26,4 +26,10 @@ export class PrescriberService {
       .delete<IPrescriber>(`api/prescriber/${prescriber}`)
       .pipe(tap((error) => console.log(error)));
   }
+
+  searchData(name: string): Observable<any> {
+    return this.httpClient
+      .get(`api/prescriber/?firstName=${name}`)
+      .pipe(tap((value) => console.log(value)));
+  }
 }

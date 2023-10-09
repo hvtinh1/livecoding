@@ -28,7 +28,6 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
     const titleEl = fixture.nativeElement;
     const titleContent = titleEl.querySelector('.mat-mdc-card-title');
-    console.log(titleEl);
     expect(titleContent.textContent).toBe('Doctor list information');
   });
 
